@@ -11,7 +11,21 @@ const studentManagerRouter = express.Router();
 const studentManagerController = require(path.join(__dirname,"../controllers/studentManagerController.js"));
 
 //处理请求
+// 获取学生列表
 studentManagerRouter.get("/list", studentManagerController.getStudentListPage);
+
+// 获取新增页面
+studentManagerRouter.get("/add", studentManagerController.getAddStudentPage);
+
+// 新增学生信息
+studentManagerRouter.post("/add", studentManagerController.addStudent);
+
+// 获取修改页面
+// 动态路径参数 以冒号开头
+studentManagerRouter.get("/edit/:studentId", studentManagerController.getEditStudentPage);
+
+// 修改学生信息
+studentManagerRouter.post("/edit/:studentId",studentManagerController.editStudent);
 
 //导出
 module.exports = studentManagerRouter;
