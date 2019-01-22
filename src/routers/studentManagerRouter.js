@@ -27,5 +27,8 @@ studentManagerRouter.get("/edit/:studentId", studentManagerController.getEditStu
 // 修改学生信息
 studentManagerRouter.post("/edit/:studentId",studentManagerController.editStudent);
 
+// 删除学生信息
+studentManagerRouter.get('/delete/:studentId',studentManagerController.deleteStudent)
+
 //导出
 module.exports = studentManagerRouter;
