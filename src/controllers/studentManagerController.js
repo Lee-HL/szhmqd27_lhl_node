@@ -15,7 +15,7 @@ const getStudentListPage = (req, res) => {
         // 这个里面的代码，是当databasetool中findMany执行了callback
         // callback中会把 err,docs传递过来
         // 渲染页面的代码
-        const html = template(path.join(__dirname, "../public/views/list.html"), {students:docs,keyword});
+        const html = template(path.join(__dirname, "../public/views/list.html"), {students:docs,keyword,loginedName:req.session.loginedName});
             
         res.send(html);
     })

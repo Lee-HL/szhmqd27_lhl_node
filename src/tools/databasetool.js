@@ -15,22 +15,24 @@ const dbName = "szhmqd27_lhl";
  */
 const insertSingle = (collectionName, data, callback) => {
     console.log(callback)
-    MongoClient.connect(url, {
-        useNewUrlParser: true
-    }, function (err, client) {
-        // 拿到db
-        const db = client.db(dbName);
+    MongoClient.connect(
+        url,
+        {useNewUrlParser: true},
+        function (err, client) {
+            // 拿到db
+            const db = client.db(dbName);
 
-        // 拿到集合
-        const collection = db.collection(collectionName);
+            // 拿到集合
+            const collection = db.collection(collectionName);
 
-        collection.insertOne(data, (err, result) => {
-            // 关闭数据库
-            client.close();
-            // 执行回调函数，传递结果给控制器
-            callback(err, result)
-        })
-    })
+            collection.insertOne(data, (err, result) => {
+                // 关闭数据库
+                client.close();
+                // 执行回调函数，传递结果给控制器
+                callback(err, result)
+            })
+        }
+    )
 }
 
 /**
@@ -41,9 +43,8 @@ const insertSingle = (collectionName, data, callback) => {
  */
 const findYige = (collectionName, data, callback) => {
     MongoClient.connect(
-        url, {
-            useNewUrlParser: true
-        },
+        url,
+        {useNewUrlParser: true},
         function (err, client) {
             // 拿到db对象
             const db = client.db(dbName);
@@ -58,7 +59,8 @@ const findYige = (collectionName, data, callback) => {
                 // 执行回调函数，把结果传递调用它的控制器
                 callback(err, doc)
             })
-        })
+        }
+    )
 }
 
 /**
@@ -69,9 +71,8 @@ const findYige = (collectionName, data, callback) => {
  */
 const findMany = (collectionName, data, callback) => {
     MongoClient.connect(
-        url, {
-            useNewUrlParser: true
-        },
+        url, 
+        {useNewUrlParser: true},
         function (err, client) {
             // 拿到db对象
             const db = client.db(dbName);
@@ -99,9 +100,8 @@ const findMany = (collectionName, data, callback) => {
  */
 const updateYige = (collectionName, condition, data, callback) => {
     MongoClient.connect(
-        url, {
-            useNewUrlParser: true
-        },
+        url,
+        {useNewUrlParser: true},
         function (err, client) {
             // 拿到db对象
             const db = client.db(dbName);
@@ -127,9 +127,8 @@ const updateYige = (collectionName, condition, data, callback) => {
  */
 const getConnection = (collectionName, callback) => {
     MongoClient.connect(
-        url, {
-            useNewUrlParser: true
-        },
+        url,
+        {useNewUrlParser: true},
         function (err, client) {
             // 拿到db对象
             const db = client.db(dbName);
@@ -139,7 +138,8 @@ const getConnection = (collectionName, callback) => {
 
             // 把结果传递出去
             callback(collection, client)
-        })
+        }
+    )
 }
 
 /**
